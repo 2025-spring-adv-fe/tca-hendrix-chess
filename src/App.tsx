@@ -10,7 +10,7 @@ function App() {
         TCA Hendrix Chess
       </h1>
       <button
-      className=''
+      className='btn btn-secondary btn-outline'
       >
         Play Chess!
       </button>
