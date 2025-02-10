@@ -11,7 +11,7 @@ function App() {
       </h1>
       <div className="p-4">
         <button
-          className='btn btn-secondary btn-soft btn-xl'
+          className='btn btn-secondary btn-soft btn-xl w-full lg:w-auto text-nowrap'
         >
           Play Chess!
         </button>
@@ -22,6 +22,11 @@ function App() {
           Leaderboard...
         </h2>
 
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+        >
+
+        </div>
 
 
 
