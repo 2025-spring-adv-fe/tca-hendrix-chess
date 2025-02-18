@@ -1,32 +1,53 @@
 import './App.css'
+import {
+  HashRouter
+  , Routes
+  , Route
+} from 'react-router';
 
-const App = (
-  props: any
-) => {
+const Home = () => {
+
+return (
+  <>
+  <h3
+      className='text-2xl font-bold'
+      >
+      Home
+      </h3>
+      <button
+      className='btn btn-active btn-secondary btn-large'
+      >
+        Play Chess
+      </button>
+  
+  </>
+)
+
+
+}
+
+
+const App = () => {
 
   
   
   console.log(
-    "App Component Fun Called ! ! !"
-    , typeof(props)
-    , props
+    "App Component Func Called ! ! !"
   );
 
   return (
-    <div>
-      <h1
-      className='text-2xl font-bold'
-      >
-        TCA Hendrix Chess
-      </h1>
-      <p>
-        { props.timestamp } - { props.magicNumber }
-      </p>
-      <button
-      className='btn btn-secondary btn-active btn-x1'
-      >
-        Play Chess!
-      </button>
+    <div
+    className='p-4'>
+      <HashRouter>
+        <Routes>
+          <Route 
+            path='/'
+            element={
+              <Home/>
+              }
+          />
+        </Routes>
+      </HashRouter>
     </div>
 
   )
