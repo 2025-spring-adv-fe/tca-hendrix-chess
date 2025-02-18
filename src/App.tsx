@@ -1,6 +1,16 @@
 import './App.css'
 
-function App() {
+const App = (
+  props: any
+) => {
+
+  
+  
+  console.log(
+    "App Component Fun Called ! ! !"
+    , typeof(props)
+    , props
+  );
 
   return (
     <div>
@@ -9,8 +19,11 @@ function App() {
       >
         TCA Hendrix Chess
       </h1>
+      <p>
+        { props.timestamp } - { props.magicNumber }
+      </p>
       <button
-      className='btn btn-secondary btn-outline'
+      className='btn btn-secondary btn-active btn-x1'
       >
         Play Chess!
       </button>
