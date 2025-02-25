@@ -10,7 +10,7 @@ export const Setup = () => {
           <button
           className='btn btn-active btn-secondary btn-large'
           >
-            Setup
+            Start Playing
           </button>
       
       </>
