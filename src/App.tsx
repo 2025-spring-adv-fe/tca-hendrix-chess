@@ -45,7 +45,8 @@ const [totalGameCount, setTotalGamesCount] = useState(6);
             path='/Play'
             element={
               <Play
-              totalGameCount={totalGameCount}/>
+              totalGameCount={totalGameCount}
+              setTotalGameCount={setTotalGamesCount}/>
               }
           />
         </Routes>
