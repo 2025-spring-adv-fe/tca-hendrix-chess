@@ -40,13 +40,14 @@ const dummyGameResults: GameResult[] = [
 
 const App = () => {
 
-const [totalGameCount, setTotalGamesCount] = useState(6);
 
-  
-  
   console.log(
     "App Component Func Called ! ! !"
   );
+
+  const [gameResults, setGameResults] = useState(dummyGameResults);
+
+  // get rid of setGameResults?? 
 
   return (
     <div
@@ -57,7 +58,7 @@ const [totalGameCount, setTotalGamesCount] = useState(6);
             path='/'
             element={
               <Home
-              totalGameCount={totalGameCount}
+              totalGameCount={gameResults.length}
               />
               }
           />
@@ -66,7 +67,7 @@ const [totalGameCount, setTotalGamesCount] = useState(6);
             path='/setup'
             element={
               <Setup
-              totalGameCount={totalGameCount}/>
+              totalGameCount={gameResults.length}/>
               }
           />
 
@@ -74,8 +75,9 @@ const [totalGameCount, setTotalGamesCount] = useState(6);
             path='/Play'
             element={
               <Play
-              totalGameCount={totalGameCount}
-              setTotalGameCount={setTotalGamesCount}/>
+              totalGameCount={gameResults.length}
+              
+              />
               }
           />
         </Routes>
