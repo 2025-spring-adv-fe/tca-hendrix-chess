@@ -45,9 +45,25 @@ const App = () => {
     "App Component Func Called ! ! !"
   );
 
-  const [gameResults] = useState(dummyGameResults);
+  //
+  // Hooks...
+  //
+
+  const [gameResults, setGameResults] = useState(dummyGameResults);
 
   // get rid of setGameResults?? // Maybe put back???
+
+
+  //
+  // other (not hooks)
+  //
+  const addNewGameResult = (newGameResult: GameResult) => setGameResults(
+    [
+      ...gameResults
+      , newGameResult
+    ]
+  );
+
 
   return (
     <div
@@ -79,6 +95,7 @@ const App = () => {
             element={
               <Play
               totalGameCount={gameResults.length}
+              addNewGameResult={addNewGameResult}
               
               />
               }

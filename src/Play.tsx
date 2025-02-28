@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router"
+import { GameResult } from "./GameResults";
 
 interface PlayProps {
   totalGameCount: number;
+  addNewGameResult: (r: GameResult) => void;
   
 };
 
 export const Play: React.FC<PlayProps> = ({
-  totalGameCount
+  totalGameCount,
+  addNewGameResult
 
 }) => {
 
@@ -41,6 +44,13 @@ export const Play: React.FC<PlayProps> = ({
           className='btn btn-active btn-secondary btn-large mt-4'
           onClick={
             () => {
+              addNewGameResult({
+                winner: "Barbie"
+                , players: [
+                    "Barbie"
+                    , "Ken"
+                ]
+              });
              
               navThree(-2)
           }
