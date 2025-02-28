@@ -35,38 +35,49 @@ export const Home: React.FC<HomeProps> = ({
         <div className="card-body">
           <h2 className="card-title">Leaderboard</h2>
 
+          {
+            leaderboardData.length > 0
+              ? (
+                <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>WINS</th>
+                      <th>LOSSES</th>
+                      <th>AVERAGE</th>
+                      <th>PLAYER</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      leaderboardData.map(
+                        x => (
+                          <tr>
+                            <th>{x.wins}</th>
+                            <td>{x.losses}</td>
+                            <td>{x.average}</td>
+                            <td>{x.player}</td>
+                          </tr>
+                        )
+                      )
+                    }
+                    {/* row 1 */}
+    
+                  </tbody>
+                </table>
+              </div>
+              )
+              : (
+                <p>
+                    Play a game of Five Crowns to see the leaderboard !
+                </p>
+
+              )
+          }
 
 
-          <div className="overflow-x-auto">
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>WINS</th>
-                  <th>LOSSES</th>
-                  <th>AVERAGE</th>
-                  <th>PLAYER</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  leaderboardData.map(
-                    x => (
-                      <tr>
-                        <th>{x.wins}</th>
-                        <td>{x.losses}</td>
-                        <td>{x.average}</td>
-                        <td>{x.player}</td>
-                      </tr>
-                    )
-                  )
-                }
-                {/* row 1 */}
-
-              </tbody>
-            </table>
-          </div>
         </div>
       </div>
 

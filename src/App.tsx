@@ -50,6 +50,7 @@ const App = () => {
   //
 
   const [gameResults, setGameResults] = useState(dummyGameResults);
+  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   // get rid of setGameResults?? // Maybe put back???
 
