@@ -4,7 +4,7 @@ import {
   , Routes
   , Route
 } from 'react-router';
-import { Home } from './Home';
+import { AppTitle, Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
 import { useState } from 'react';
@@ -49,8 +49,8 @@ const App = () => {
   const [gameResults, setGameResults] = useState(dummyGameResults);
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
-  // get rid of setGameResults?? // Maybe put back???
-
+ 
+  const [title, setTitle] = useState(AppTitle);
 
   //
   // other (not hooks)
@@ -69,7 +69,7 @@ const App = () => {
     className='p-0'>
       <div className="navbar bg-base-300 shadow-lg">
         <h1 className="text-xl font-bold">
-          Hendrix's Chess
+          { title }
         </h1>
       </div>
       <div className='p-4'>
@@ -82,6 +82,7 @@ const App = () => {
                 leaderboardData={
                   getLeaderboard(gameResults)
                 }
+                setTitle={setTitle}
                 />
                 }
             />
@@ -89,7 +90,8 @@ const App = () => {
             <Route 
               path='/setup'
               element={
-                <Setup/>
+                <Setup
+                setTitle={setTitle}/>
                 }
             />
 
@@ -98,6 +100,7 @@ const App = () => {
               element={
                 <Play
                 addNewGameResult={addNewGameResult}
+                setTitle={setTitle}
                 
                 />
                 }

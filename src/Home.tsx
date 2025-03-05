@@ -1,16 +1,21 @@
 import { useNavigate } from "react-router"
 import { LeaderboardEntry } from "./GameResults";
 
+export const AppTitle = "Hendrix's Chess App"
+
 interface HomeProps {
   leaderboardData: LeaderboardEntry[];
+  setTitle: (t: string) => void;
 };
 
 
 export const Home: React.FC<HomeProps> = ({
 leaderboardData
+, setTitle
 }) => {
 
  
+  setTitle(AppTitle);
 
   const nav = useNavigate();
   return (
