@@ -64,42 +64,51 @@ const App = () => {
 
 
   return (
+    
     <div
-    className='p-4'>
+    className='p-0'>
+      <div className="navbar bg-base-300 shadow-lg">
+        <h1 className="text-xl font-bold">
+          Hendrix's Chess
+        </h1>
+      </div>
+      <div className='p-4'>
       <HashRouter>
-        <Routes>
-          <Route 
-            path='/'
-            element={
-              <Home
-              totalGameCount={gameResults.length}
-              leaderboardData={
-                getLeaderboard(gameResults)
-              }
-              />
-              }
-          />
+          <Routes>
+            <Route 
+              path='/'
+              element={
+                <Home
+                totalGameCount={gameResults.length}
+                leaderboardData={
+                  getLeaderboard(gameResults)
+                }
+                />
+                }
+            />
 
-          <Route 
-            path='/setup'
-            element={
-              <Setup
-              totalGameCount={gameResults.length}/>
-              }
-          />
+            <Route 
+              path='/setup'
+              element={
+                <Setup
+                totalGameCount={gameResults.length}/>
+                }
+            />
 
-          <Route 
-            path='/Play'
-            element={
-              <Play
-              totalGameCount={gameResults.length}
-              addNewGameResult={addNewGameResult}
-              
-              />
-              }
-          />
-        </Routes>
-      </HashRouter>
+            <Route 
+              path='/Play'
+              element={
+                <Play
+                totalGameCount={gameResults.length}
+                addNewGameResult={addNewGameResult}
+                
+                />
+                }
+            />
+          </Routes>
+        </HashRouter>
+
+      </div>
     </div>
 
   )
