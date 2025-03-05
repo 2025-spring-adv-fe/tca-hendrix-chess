@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router"
 import { LeaderboardEntry } from "./GameResults";
+import { useEffect } from "react";
 
 export const AppTitle = "Hendrix's Chess App"
 
@@ -14,8 +15,10 @@ leaderboardData
 , setTitle
 }) => {
 
- 
-  setTitle(AppTitle);
+ useEffect(
+  () => setTitle(AppTitle)
+  , []
+ );
 
   const nav = useNavigate();
   return (
