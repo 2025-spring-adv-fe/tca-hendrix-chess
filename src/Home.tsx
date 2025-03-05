@@ -12,7 +12,7 @@ export const Home: React.FC<HomeProps> = ({
   , leaderboardData
 }) => {
 
-  console.log(leaderboardData);
+ 
 
   const nav = useNavigate();
   return (
