@@ -17,7 +17,8 @@ leaderboardData
 
  useEffect(
   () => setTitle(AppTitle)
-  , []
+  , [] //this is fine
+  
  );
 
   const nav = useNavigate();
