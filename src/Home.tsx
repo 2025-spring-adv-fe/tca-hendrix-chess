@@ -1,16 +1,22 @@
 import { useNavigate } from "react-router"
-import { LeaderboardEntry } from "./GameResults";
+import { GeneralFacts, LeaderboardEntry } from "./GameResults";
 
 interface HomeProps {
   totalGameCount: number;
   leaderboardData: LeaderboardEntry[];
+  generalFacts: GeneralFacts;
 };
 
 
 export const Home: React.FC<HomeProps> = ({
   totalGameCount
   , leaderboardData
+  , generalFacts
 }) => {
+
+  console.log(
+    generalFacts
+  );
 
  
 
