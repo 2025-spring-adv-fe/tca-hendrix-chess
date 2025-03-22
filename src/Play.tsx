@@ -15,7 +15,12 @@ export const Play: React.FC<PlayProps> = ({
 }) => {
 
   const navThree = useNavigate();
+  
   const [turnNumber, setTurnNumber] = useState(6);
+  
+  const [startTimestamp] = useState(
+    new Date().toISOString()
+  );
 
     return (
       <>
@@ -50,6 +55,8 @@ export const Play: React.FC<PlayProps> = ({
                     "Barbie"
                     , "Ken"
                 ]
+                , start: startTimestamp
+                , end: new Date().toISOString()
               });
              
               navThree(-2)
