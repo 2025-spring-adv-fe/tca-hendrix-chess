@@ -4,12 +4,17 @@ import { useNavigate } from "react-router"
 interface SetupProps {
   totalGameCount: number;
   previousPlayers: string[];
+  setCurrentPlayers: (players: string[]) => void;
 };
 
 export const Setup: React.FC<SetupProps> = ({
   totalGameCount
   , previousPlayers
+  , setCurrentPlayers
 }) => {
+
+
+  const navTwo = useNavigate();
 
   const [availablePlayers, setAvailablePlayers] = useState(
     previousPlayers.map(
@@ -21,7 +26,7 @@ export const Setup: React.FC<SetupProps> = ({
   );
 
 
-  const navTwo = useNavigate();
+  
     return (
       <>
       <h3
@@ -32,7 +37,19 @@ export const Setup: React.FC<SetupProps> = ({
           <button
           className='btn btn-active btn-secondary btn-large'
           onClick={
-            () => navTwo('/play')
+            () => {
+              setCurrentPlayers(
+                availablePlayers
+                  . filter(
+                    x => x.checked
+                  )
+                  .map(
+                    x => (
+                      x.name
+                    )
+                  )
+              );
+              navTwo('/play')}
           }
           >
             Start Playing

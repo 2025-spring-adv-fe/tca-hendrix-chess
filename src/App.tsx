@@ -47,6 +47,9 @@ const App = () => {
   // get rid of setGameResults?? // Maybe put back???
 
 
+  const [currentPlayers, setCurrentPlayers] = useState<string[]>([])
+
+
   //
   // other (not hooks)
   //
@@ -83,7 +86,8 @@ const App = () => {
             element={
               <Setup
                 totalGameCount={gameResults.length} 
-                previousPlayers={getPreviousPlayers(gameResults)} />
+                previousPlayers={getPreviousPlayers(gameResults)} 
+                setCurrentPlayers={setCurrentPlayers}/>
             }
           />
 
@@ -93,6 +97,7 @@ const App = () => {
               <Play
                 totalGameCount={gameResults.length}
                 addNewGameResult={addNewGameResult}
+                currentPlayers={currentPlayers}
 
               />
             }
