@@ -1,12 +1,24 @@
+import { useState } from "react";
 import { useNavigate } from "react-router"
 
 interface SetupProps {
   totalGameCount: number;
+  previousPlayers: string[];
 };
 
 export const Setup: React.FC<SetupProps> = ({
   totalGameCount
+  , previousPlayers
 }) => {
+
+  const [availablePlayers, setAvailablePlayers] = useState(
+    previousPlayers.map(
+      x => ({
+        name: x
+        , checked: false
+      })
+    )
+  );
 
 
   const navTwo = useNavigate();
@@ -25,6 +37,35 @@ export const Setup: React.FC<SetupProps> = ({
           >
             Start Playing
           </button>
+          <div className="mt-4">
+            {
+              availablePlayers.map(
+                x => (
+                  <label
+                  className="block mt-2"
+                  >
+                    <input type="checkbox"
+                    className="checkbox mr-2"
+                    checked={x.checked}
+                    onChange={
+                      () => setAvailablePlayers(
+                        availablePlayers.map(
+                          y => ({
+                            name: y.name
+                            , checked: y.name === x.name
+                                ? !y.checked 
+                                : y.checked
+                          })
+                        )
+                      )
+                    }
+                    />
+                    {x.name}
+                  </label>
+                )
+              )
+            }
+          </div>
       
       </>
     )
