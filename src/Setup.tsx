@@ -13,6 +13,10 @@ export const Setup: React.FC<SetupProps> = ({
   , setCurrentPlayers
 }) => {
 
+  //
+  // React Hooks, Inlcudes, State, Effect, and others...
+  //
+
 
   const navTwo = useNavigate();
 
@@ -25,6 +29,16 @@ export const Setup: React.FC<SetupProps> = ({
     )
   );
 
+  //
+  // Other code, for example, derived state and other calcs...
+  //
+  const numberOfChosenPlayers = availablePlayers.filter(x => x.checked).length;
+  // The below code is correct for CHESS!!!
+  const mustBeTwo = numberOfChosenPlayers === 2;
+
+  //
+  // Return the JSX...
+  //
 
   
     return (
@@ -35,7 +49,7 @@ export const Setup: React.FC<SetupProps> = ({
           Setup ({totalGameCount} games played)
           </h3>
           <button
-          className='btn btn-active btn-secondary btn-large'
+          className='btn btn-active btn-secondary btn-large mt-4 w-full lg:w-64'
           onClick={
             () => {
               setCurrentPlayers(
@@ -51,14 +65,20 @@ export const Setup: React.FC<SetupProps> = ({
               );
               navTwo('/play')}
           }
+          disabled={!mustBeTwo}
           >
-            Start Playing
+            {
+              mustBeTwo
+              ? "Start Playing"
+              : "Must Select 2 Players to Start Game!"
+            }
           </button>
           <div className="mt-4">
             {
               availablePlayers.map(
                 x => (
                   <label
+                  key={x.name}
                   className="block mt-2"
                   >
                     <input type="checkbox"
