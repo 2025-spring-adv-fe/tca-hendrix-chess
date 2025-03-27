@@ -29,12 +29,43 @@ export const Setup: React.FC<SetupProps> = ({
     )
   );
 
+  const [newPlayerName, setNewPlayerName] = useState("");
+
   //
   // Other code, for example, derived state and other calcs...
   //
   const numberOfChosenPlayers = availablePlayers.filter(x => x.checked).length;
   // The below code is correct for CHESS!!!
   const mustBeTwo = numberOfChosenPlayers === 2;
+
+  const duplicatePlayerName = availablePlayers.some(
+    x => x.name.toUpperCase() === newPlayerName.toUpperCase()
+  );
+
+  const validateAndAddNewPlayer  = () => { 
+
+        // Bail if invalid
+        if (
+          newPlayerName.length === 0
+            || duplicatePlayerName
+        ) {
+          return;
+        }
+
+        setAvailablePlayers(
+    [
+      ...availablePlayers
+      , {
+        name: newPlayerName
+        , checked: true
+      }
+    ].sort(
+      (a, b) => a.name.localeCompare(b.name.toUpperCase())
+    )
+  );
+
+  setNewPlayerName("");
+};
 
   //
   // Return the JSX...
@@ -73,6 +104,24 @@ export const Setup: React.FC<SetupProps> = ({
               : "Must Select 2 Players to Start Game!"
             }
           </button>
+          <div className="mt-4 flex">
+            <input type="text" placeholder="Enter Player Name" className={`input ${duplicatePlayerName ? "input-error" : ""}`}
+            value={newPlayerName}
+            onChange={
+              (e) => setNewPlayerName(e.target.value)
+            }/>
+            
+            <button className="btn btn-outline btn-neutral ml-2"
+                    onClick={
+                      validateAndAddNewPlayer
+
+                    }
+            
+            >
+              Add
+            </button>
+          
+          </div>
           <div className="mt-4">
             {
               availablePlayers.map(
