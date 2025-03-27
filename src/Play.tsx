@@ -56,7 +56,7 @@ export const Play: React.FC<PlayProps> = ({
                     x => (
 
                       <button
-                      key={x}
+                      key={x} 
                       className='btn btn-active btn-secondary btn-large mt-4'
                       onClick={
                         () => {
