@@ -16,6 +16,7 @@ export interface GameResult {
     players: string[];
     start: string;
     end: string;
+    turnCount: number;
 };
 
 export interface LeaderboardEntry {
@@ -30,6 +31,7 @@ export interface GeneralFacts {
     totalGames: number;
     shortestGame: string;
     longestGame: string;
+    avgTurnsPerGame: string;
 };
 
 //
@@ -82,11 +84,23 @@ export const getLeaderboard = (
         x => Date.parse(x.end) - Date.parse(x.start)
     );
 
+    // Let's calc avgTurnsPerGame
+    const turnSum = results
+        .map(
+            x => x.turnCount
+        )
+        .reduce(
+            (acc, x) => acc + x
+            , 0
+        )
+    ;
+
     return {
         lastPlayed: `${formatLastPlayed(lastPlayedInMilliseconds)} ago`
         , totalGames: results.length
         , shortestGame: formatGameDuration(Math.min(...gameDurationsInMilliseconds))
         , longestGame: formatGameDuration(Math.max(...gameDurationsInMilliseconds))
+        , avgTurnsPerGame: (turnSum / results.length).toFixed(2)
     };
 };
 

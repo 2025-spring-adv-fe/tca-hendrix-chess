@@ -18,7 +18,7 @@ export const Play: React.FC<PlayProps> = ({
 
   const navThree = useNavigate();
   
-  const [turnNumber, setTurnNumber] = useState(6);
+  const [turnNumber, setTurnNumber] = useState(1);
   
   const [startTimestamp] = useState(
     new Date().toISOString()
@@ -65,6 +65,7 @@ export const Play: React.FC<PlayProps> = ({
                             , players: currentPlayers
                             , start: startTimestamp
                             , end: new Date().toISOString()
+                            , turnCount: turnNumber
                           });
                          
                           navThree(-2)
