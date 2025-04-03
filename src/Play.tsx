@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router"
 import { GameResult } from "./GameResults";
 
 interface PlayProps {
   totalGameCount: number;
+  setTitle: (t: string) => void;
   addNewGameResult: (r: GameResult) => void;
   currentPlayers: string[]
   
@@ -11,10 +12,16 @@ interface PlayProps {
 
 export const Play: React.FC<PlayProps> = ({
   totalGameCount
+  , setTitle
   , addNewGameResult
   , currentPlayers
 
 }) => {
+
+  useEffect(
+    () => setTitle("Play")
+    , []
+);
 
   const navThree = useNavigate();
   

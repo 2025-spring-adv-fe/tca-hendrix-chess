@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router"
 import { GeneralFacts, LeaderboardEntry } from "./GameResults";
+import { useEffect } from "react";
+
+export const AppTitle = "Hendrix's Chess Game";
 
 interface HomeProps {
   totalGameCount: number;
+  setTitle: (t: string) => void;
   leaderboardData: LeaderboardEntry[];
   generalFacts: GeneralFacts;
 };
@@ -10,9 +14,15 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({
   totalGameCount
+  , setTitle
   , leaderboardData
   , generalFacts
 }) => {
+
+  useEffect(
+    () => setTitle(AppTitle)
+      , []
+  );
 
 
  

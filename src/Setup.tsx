@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useEffect , useState } from "react";
 import { useNavigate } from "react-router"
 
 interface SetupProps {
   totalGameCount: number;
+  setTitle: (t: string) => void;
   previousPlayers: string[];
   setCurrentPlayers: (players: string[]) => void;
 };
 
 export const Setup: React.FC<SetupProps> = ({
   totalGameCount
+  , setTitle
   , previousPlayers
   , setCurrentPlayers
 }) => {
@@ -16,6 +18,11 @@ export const Setup: React.FC<SetupProps> = ({
   //
   // React Hooks, Inlcudes, State, Effect, and others...
   //
+
+  useEffect(
+    () => setTitle("Setup")
+    , []
+);
 
 
   const navTwo = useNavigate();
