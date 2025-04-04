@@ -69,7 +69,7 @@ const App = () => {
   return (
     <div
     className='p-0 overflow-x-hidden min-h-screen'
-    // I would love it if it was always dark. Ha! 
+    // I would love it if it was always dark. Ha! The functionality is nice, though. 
     data-theme={darkMode ? "dark" : "light"}
   >
     <div 
