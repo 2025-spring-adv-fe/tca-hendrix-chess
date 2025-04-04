@@ -20,7 +20,6 @@ export const Play: React.FC<PlayProps> = ({
 
   useEffect(
     () => setTitle("Play")
-    , []
 );
 
   const navThree = useNavigate();

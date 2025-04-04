@@ -70,7 +70,7 @@ const App = () => {
     className='p-0'
   >
     <div 
-      className="navbar bg-base-300 shadow-lg"
+      className="navbar bg-base-300 shadow-lg overflow-x-hidden flex"
     >
       <h1 
         className="text-xl font-bold"
@@ -78,13 +78,13 @@ const App = () => {
         { title }
       </h1>
 
-      <label className="swap swap-rotate">
+      <label className="swap swap-rotate ml-auto">
   {/* this hidden checkbox controls the state */}
   <input type="checkbox" />
 
   {/* sun icon */}
   <svg
-    className="swap-on h-10 w-10 fill-current"
+    className="swap-on h-8 w-8 fill-current"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24">
     <path
@@ -93,7 +93,7 @@ const App = () => {
 
   {/* moon icon */}
   <svg
-    className="swap-off h-10 w-10 fill-current"
+    className="swap-off h-8 w-8 fill-current"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24">
     <path

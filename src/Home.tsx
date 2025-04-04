@@ -21,7 +21,6 @@ export const Home: React.FC<HomeProps> = ({
 
   useEffect(
     () => setTitle(AppTitle)
-      , []
   );
 
 

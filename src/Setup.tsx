@@ -21,7 +21,6 @@ export const Setup: React.FC<SetupProps> = ({
 
   useEffect(
     () => setTitle("Setup")
-    , []
 );
 
 
