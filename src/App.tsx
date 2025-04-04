@@ -50,8 +50,9 @@ const App = () => {
 
   const [title, setTitle] = useState(AppTitle);
 
-
   const [currentPlayers, setCurrentPlayers] = useState<string[]>([])
+
+  const [darkMode, setDarkMode] = useState(false);
 
 
   //
@@ -67,7 +68,9 @@ const App = () => {
 
   return (
     <div
-    className='p-0'
+    className='p-0 overflow-x-hidden min-h-screen'
+    // I would love it if it was always dark. Ha! 
+    data-theme={darkMode ? "dark" : "light"}
   >
     <div 
       className="navbar bg-base-300 shadow-lg overflow-x-hidden flex"
@@ -80,7 +83,9 @@ const App = () => {
 
       <label className="swap swap-rotate ml-auto">
   {/* this hidden checkbox controls the state */}
-  <input type="checkbox" />
+  <input type="checkbox" onClick={
+    () => setDarkMode(!darkMode)
+  } />
 
   {/* sun icon */}
   <svg
