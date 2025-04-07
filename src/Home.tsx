@@ -43,7 +43,7 @@ export const Home: React.FC<HomeProps> = ({
         Play Chess
       </button>
 
-
+        
       <div className="card w-96 bg-base-100 card-md shadow-lg">
         <div className="card-body">
           <h2 className="card-title">General</h2>
