@@ -129,7 +129,9 @@ const App = () => {
             {
               AppTitle === title && (
 
-                <button className="btn" onClick={
+                <button 
+                className="btn btn-ghost"
+                onClick={
                   () => emailModalRef.current?.showModal()
                 }>
       
