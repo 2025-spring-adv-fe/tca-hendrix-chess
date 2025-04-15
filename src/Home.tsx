@@ -9,6 +9,7 @@ interface HomeProps {
   setTitle: (t: string) => void;
   leaderboardData: LeaderboardEntry[];
   generalFacts: GeneralFacts;
+  gamesByMonthData: Array<[string, number]>
 };
 
 
@@ -17,6 +18,7 @@ export const Home: React.FC<HomeProps> = ({
   , setTitle
   , leaderboardData
   , generalFacts
+  , gamesByMonthData
 }) => {
 
   useEffect(
@@ -125,8 +127,59 @@ export const Home: React.FC<HomeProps> = ({
               </div>
               )
               : (
-                <p>
-                    Play a game of Five Crowns to see the leaderboard !
+                <p
+                  className="mx-3 mb-3"
+                >
+                    Play a game of Chess to see the leaderboard !
+                </p>
+
+              )
+          }
+
+
+        </div>
+      </div>
+
+      <div className="card w-96 bg-base-100 card-md shadow-lg">
+        <div className="card-body">
+          <h2 className="card-title">Chess Games by Month</h2>
+
+          {
+            leaderboardData.length > 0 
+              ? (
+                <div className="overflow-x-auto">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>MONTH</th>
+                      <th># OF GAMES</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {
+                      gamesByMonthData.map(
+                        x => (
+                          <tr
+                              key={x[0]}
+                              >
+                            <td>{x[0]}</td>
+                            <td>{x[1]}</td>
+                          </tr>
+                        )
+                      )
+                    }
+                    {/* row 1 */}
+    
+                  </tbody>
+                </table>
+              </div>
+              )
+              : (
+                <p
+                    className="mx-3 mb-3"
+                >
+                    Play a game of Chess to see!
                 </p>
 
               )
