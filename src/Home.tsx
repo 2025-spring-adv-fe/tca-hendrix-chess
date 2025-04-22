@@ -46,7 +46,7 @@ export const Home: React.FC<HomeProps> = ({
       </button>
 
         
-      <div className="card w-96 bg-base-100 card-md shadow-lg">
+      <div className="card w-96 bg-base-100 card-md shadow-lg w-full">
         <div className="card-body">
           <h2 className="card-title">General</h2>
                 <div className="overflow-x-auto">
