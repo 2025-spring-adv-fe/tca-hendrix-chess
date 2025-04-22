@@ -16,30 +16,6 @@ import {
   , loadGamesFromCloud
 } from './tca-cloud-api';
 
-const dummyGameResults: GameResult[] = [
-  {
-    winner: "Hermione"
-    , players: [
-      "Hermione"
-      , "Harry"
-      , "Ron"
-    ]
-    , start: "2025-03-01T18:20:41.576Z"
-    , end: "2025-03-01T18:35:42.576Z"
-    , turnCount: 7
-  }
-  , {
-    winner: "Ron"
-    , players: [
-      "Hermione"
-      , "Ron"
-    ]
-    , start: "2025-03-05T18:40:27.576Z"
-    , end: "2025-03-05T18:45:42.576Z"
-    , turnCount: 3
-  }
-];
-
 
 const App = () => {
 
@@ -52,8 +28,8 @@ const App = () => {
 
   const emailModalRef = useRef<HTMLDialogElement | null>(null);
 
-  const [gameResults, setGameResults] = useState(dummyGameResults);
-  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
+ 
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   // get rid of setGameResults?? // Maybe put back???
 
@@ -89,7 +65,9 @@ const App = () => {
     () => {
 
       const loadEmail = async () => {
+        
         const savedEmail = await localforage.getItem<string>("email") ?? "";
+        
         if (!ignore) {
           setEmailOnModal(savedEmail);
 
@@ -105,6 +83,34 @@ const App = () => {
       };
     }
     , []
+  );
+
+  useEffect(
+    () => {
+
+      const loadGameResults = async () => {
+        
+        const savedGameResults = await loadGamesFromCloud(
+          emailForCloudApi
+          , "tca-five-crowns-25s"
+        );
+        
+        if (!ignore) {
+          setGameResults(savedGameResults);
+        }
+      };
+
+      let ignore = false;
+
+      if (emailForCloudApi.length > 0) {
+        loadGameResults();
+      }
+
+      return () => {
+        ignore = true;
+      };
+    }
+    , [emailForCloudApi]
   );
 
 
