@@ -11,6 +11,11 @@ import { useEffect, useRef, useState } from 'react';
 import { GameResult, getGeneralFacts, getLeaderboard, getPreviousPlayers, getGamesByMonth } from './GameResults';
 import localforage from 'localforage';
 
+import {
+  saveGameToCloud
+  , loadGamesFromCloud
+} from './tca-cloud-api';
+
 const dummyGameResults: GameResult[] = [
   {
     winner: "Hermione"
@@ -59,6 +64,8 @@ const App = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   const [emailOnModal, setEmailOnModal] = useState("");
+  
+  const [emailForCloudApi, setEmailForCloudApi] = useState("");
 
   useEffect(
     () => {
@@ -85,6 +92,10 @@ const App = () => {
         const savedEmail = await localforage.getItem<string>("email") ?? "";
         if (!ignore) {
           setEmailOnModal(savedEmail);
+
+          if(savedEmail.length > 0) {
+            setEmailForCloudApi(savedEmail)
+          }
         }
       };
       let ignore = false;
@@ -101,12 +112,27 @@ const App = () => {
   //
   // other (not hooks)
   //
-  const addNewGameResult = (newGameResult: GameResult) => setGameResults(
+  const addNewGameResult =  async (newGameResult: GameResult) => 
+
+    { 
+      if (emailForCloudApi.length > 0) {
+        await saveGameToCloud(
+          emailForCloudApi
+          , "tca-five-crowns-25s"
+          , newGameResult.end
+          , newGameResult
+        );
+      }
+
+    
+    
+    setGameResults(
     [
       ...gameResults
       , newGameResult
     ]
   );
+}
 
   // Return JSX
   return (
@@ -197,12 +223,20 @@ const App = () => {
             <form method="dialog">
               <button className="btn"
               onClick={
-                async() => await localforage.setItem(
+                async() => {
+                  const savedEmail = await localforage.setItem(
                   "email"
                   , emailOnModal
-                )
+                );
+
+                if (savedEmail.length > 0) {
+                  setEmailForCloudApi(savedEmail);
+                }
               }
-              >Save</button>
+            }
+              >
+              Save
+              </button>
             </form>
           </div>
         </div>
