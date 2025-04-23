@@ -14,7 +14,7 @@ import localforage from 'localforage';
 import {
   saveGameToCloud
   , loadGamesFromCloud
-} from './tca-cloud-api';
+} from './tca-cloud-api'; 
 
 
 const App = () => {
