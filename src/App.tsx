@@ -1,3 +1,4 @@
+import { MoveHistory } from './MoveHistory';
 import './App.css'
 import {
   HashRouter
@@ -42,6 +43,12 @@ const App = () => {
   const [emailOnModal, setEmailOnModal] = useState("");
   
   const [emailForCloudApi, setEmailForCloudApi] = useState("");
+
+  const [chessMoves, setChessMoves] = useState<string[]>([
+    "e4", "e5", "Nf3", "Nc6", "Bb5", "a6"
+  ]);
+  
+
 
   useEffect(
     () => {
@@ -142,7 +149,9 @@ const App = () => {
 
   // Return JSX
   return (
-    <div
+  
+  
+      <div
       className='p-0 overflow-x-hidden min-h-screen'
       // I would love it if it was always dark. Ha! The functionality is nice, though. 
       // I might try changing it to different colors for fun. 
@@ -269,6 +278,7 @@ const App = () => {
                   gamesByMonthData={
                     getGamesByMonth(gameResults)
                   }
+                  chessMoves={chessMoves}
                 />
               }
             />
@@ -296,6 +306,14 @@ const App = () => {
                 />
               }
             />
+
+
+<Route
+  path='/history'
+  element={
+    <MoveHistory moves={chessMoves} />
+  }
+/>
           </Routes>
         </HashRouter>
       </div>

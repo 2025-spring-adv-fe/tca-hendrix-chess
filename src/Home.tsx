@@ -10,6 +10,7 @@ interface HomeProps {
   leaderboardData: LeaderboardEntry[];
   generalFacts: GeneralFacts;
   gamesByMonthData: Array<[string, number]>
+  chessMoves: string[];
 };
 
 
@@ -19,6 +20,7 @@ export const Home: React.FC<HomeProps> = ({
   , leaderboardData
   , generalFacts
   , gamesByMonthData
+  , chessMoves
 }) => {
 
   useEffect(
@@ -45,8 +47,20 @@ export const Home: React.FC<HomeProps> = ({
         Play Chess
       </button>
 
-        
-      <div className="card w-96 bg-base-100 card-md shadow-lg w-full">
+      <div className="mt-6">
+  <h2 className="text-xl font-bold mb-2">Recent Chess Moves</h2>
+  <ol className="list-decimal list-inside space-y-1">
+    {chessMoves.map((move, index) => (
+      <li key={index} className="text-base">
+        {move}
+      </li>
+    ))}
+  </ol>
+</div>
+      
+      
+      
+      <div className="card w-96 bg-base-100 card-md shadow-lg">
         <div className="card-body">
           <h2 className="card-title">General</h2>
                 <div className="overflow-x-auto">
