@@ -44,6 +44,7 @@ const App = () => {
   
   const [emailForCloudApi, setEmailForCloudApi] = useState("");
 
+  // useState chessMoves
   const [chessMoves] = useState<string[]>([
     "e4", "e5", "Nf3", "Nc6", "Bb5", "a6"
   ]);
@@ -278,6 +279,7 @@ const App = () => {
                   gamesByMonthData={
                     getGamesByMonth(gameResults)
                   }
+                  //chessMoves Route
                   chessMoves={chessMoves}
                 />
               }
