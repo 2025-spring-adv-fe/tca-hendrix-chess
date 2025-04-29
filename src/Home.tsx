@@ -48,7 +48,7 @@ export const Home: React.FC<HomeProps> = ({
       </button>
 
       <div className="mt-6">
-  <h2 className="text-xl font-bold mb-2">Recent Chess Moves</h2>
+  <h2 className="text-xl font-bold mb-2">Move History</h2>
   <ol className="list-decimal list-inside space-y-1">
     {chessMoves.map((move, index) => (
       <li key={index} className="text-base">
