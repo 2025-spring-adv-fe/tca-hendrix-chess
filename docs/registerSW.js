@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/tca-hendrix-chess/sw.js', { scope: '/tca-hendrix-chess/' })})}
