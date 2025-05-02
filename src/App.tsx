@@ -44,9 +44,23 @@ const App = () => {
   
   const [emailForCloudApi, setEmailForCloudApi] = useState("");
 
-  // useState chessMoves
+  // useState chessMoves MOVES!!!
   const [chessMoves] = useState<string[]>([
-    "e4", "e5", "Nf3", "Nc6", "Bb5", "a6"
+    "e4", "e5",
+    "Nf3", "Nc6",
+    "Bb5", "a6",
+    "Ba4", "Nf6",
+    "O-O", "Be7",
+    "Re1", "b5",
+    "Bb3", "d6",
+    "c3", "O-O",
+    "h3", "Nb8",
+    "d4", "Nbd7",
+    "Nbd2", "Bb7",
+    "Bc2", "Re8",
+    "a4", "Bf8",
+    "d5", "c6",
+    "axb5", "axb5"
   ]);
   
 

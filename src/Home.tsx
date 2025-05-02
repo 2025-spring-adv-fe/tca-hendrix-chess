@@ -28,7 +28,7 @@ export const Home: React.FC<HomeProps> = ({
   );
 
 
- 
+
 
   const nav = useNavigate();
   return (
@@ -47,55 +47,59 @@ export const Home: React.FC<HomeProps> = ({
         Play Chess
       </button>
 
-      <div className="mt-6">
-  <h2 className="text-xl font-bold mb-2">Move History</h2>
-  <ol className="list-decimal list-inside space-y-1">
+      <div className="mt-6 border-l-4 border-blue-500 bg-white p-4 shadow rounded">
+  <h2 className="text-xl font-bold text-gray-700 mb-3">Move History</h2>
+  <ol className="list-decimal list-inside space-y-1 max-h-60 overflow-auto pr-2">
     {chessMoves.map((move, index) => (
-      <li key={index} className="text-base">
+      <li key={index} className="py-1 hover:text-blue-600 cursor-pointer transition">
         {move}
       </li>
     ))}
   </ol>
 </div>
-      
-      
-      
+
+
+
+
+
+
+
       <div className="card w-96 bg-base-100 card-md shadow-lg">
         <div className="card-body">
           <h2 className="card-title">General</h2>
-                <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  
-                  <tbody>
+          <div className="overflow-x-auto">
+            <table className="table">
+              {/* head */}
 
-                    <tr>
-                            <td>Last Played</td>
-                            <th>{generalFacts.lastPlayed}</th>
-                    </tr>
+              <tbody>
 
-                    <tr>
-                            <td>Total Games</td>
-                            <th>{generalFacts.totalGames}</th>
-                    </tr>
+                <tr>
+                  <td>Last Played</td>
+                  <th>{generalFacts.lastPlayed}</th>
+                </tr>
 
-                    <tr>
-                            <td>Shortest Game</td>
-                            <th>{generalFacts.shortestGame}</th>
-                    </tr>
+                <tr>
+                  <td>Total Games</td>
+                  <th>{generalFacts.totalGames}</th>
+                </tr>
 
-                    <tr>
-                            <td>Longest Game</td>
-                            <th>{generalFacts.longestGame}</th>
-                    </tr>
-                    <tr>
-                            <td>AVG Turns per Game</td>
-                            <th>{generalFacts.avgTurnsPerGame}</th>
-                    </tr>
-    
-                  </tbody>
-                </table>
-              </div>
+                <tr>
+                  <td>Shortest Game</td>
+                  <th>{generalFacts.shortestGame}</th>
+                </tr>
+
+                <tr>
+                  <td>Longest Game</td>
+                  <th>{generalFacts.longestGame}</th>
+                </tr>
+                <tr>
+                  <td>AVG Turns per Game</td>
+                  <th>{generalFacts.avgTurnsPerGame}</th>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
 
 
         </div>
@@ -106,45 +110,45 @@ export const Home: React.FC<HomeProps> = ({
           <h2 className="card-title">Leaderboard</h2>
 
           {
-            leaderboardData.length > 0 
+            leaderboardData.length > 0
               ? (
                 <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th>WINS</th>
-                      <th>LOSSES</th>
-                      <th>AVERAGE</th>
-                      <th>PLAYER</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      leaderboardData.map(
-                        x => (
-                          <tr
+                  <table className="table">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>WINS</th>
+                        <th>LOSSES</th>
+                        <th>AVERAGE</th>
+                        <th>PLAYER</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        leaderboardData.map(
+                          x => (
+                            <tr
                               key={x.player}
-                              >
-                            <td>{x.wins}</td>
-                            <td>{x.losses}</td>
-                            <td>{x.average}</td>
-                            <td>{x.player}</td>
-                          </tr>
+                            >
+                              <td>{x.wins}</td>
+                              <td>{x.losses}</td>
+                              <td>{x.average}</td>
+                              <td>{x.player}</td>
+                            </tr>
+                          )
                         )
-                      )
-                    }
-                    {/* row 1 */}
-    
-                  </tbody>
-                </table>
-              </div>
+                      }
+                      {/* row 1 */}
+
+                    </tbody>
+                  </table>
+                </div>
               )
               : (
                 <p
                   className="mx-3 mb-3"
                 >
-                    Play a game of Chess to see the leaderboard !
+                  Play a game of Chess to see the leaderboard !
                 </p>
 
               )
@@ -159,41 +163,41 @@ export const Home: React.FC<HomeProps> = ({
           <h2 className="card-title">Chess Games by Month</h2>
 
           {
-            leaderboardData.length > 0 
+            leaderboardData.length > 0
               ? (
                 <div className="overflow-x-auto">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th>MONTH</th>
-                      <th># OF GAMES</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {
-                      gamesByMonthData.map(
-                        x => (
-                          <tr
+                  <table className="table">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>MONTH</th>
+                        <th># OF GAMES</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {
+                        gamesByMonthData.map(
+                          x => (
+                            <tr
                               key={x[0]}
-                              >
-                            <td>{x[0]}</td>
-                            <td>{x[1]}</td>
-                          </tr>
+                            >
+                              <td>{x[0]}</td>
+                              <td>{x[1]}</td>
+                            </tr>
+                          )
                         )
-                      )
-                    }
-                    {/* row 1 */}
-    
-                  </tbody>
-                </table>
-              </div>
+                      }
+                      {/* row 1 */}
+
+                    </tbody>
+                  </table>
+                </div>
               )
               : (
                 <p
-                    className="mx-3 mb-3"
+                  className="mx-3 mb-3"
                 >
-                    Play a game of Chess to see!
+                  Play a game of Chess to see!
                 </p>
 
               )
