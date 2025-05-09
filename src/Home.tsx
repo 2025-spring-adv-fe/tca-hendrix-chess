@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router"
 import { GeneralFacts, LeaderboardEntry } from "./GameResults";
 import { useEffect } from "react";
+import ChessGame from './ChessGame';
 
 export const AppTitle = "Hendrix's Chess Game";
 
@@ -11,6 +12,7 @@ interface HomeProps {
   generalFacts: GeneralFacts;
   gamesByMonthData: Array<[string, number]>
   chessMoves: string[];
+  setChessMoves: (moves: string[]) => void;
 };
 
 
@@ -21,6 +23,7 @@ export const Home: React.FC<HomeProps> = ({
   , generalFacts
   , gamesByMonthData
   , chessMoves
+  , setChessMoves
 }) => {
 
   useEffect(
@@ -38,6 +41,8 @@ export const Home: React.FC<HomeProps> = ({
       >
         Home ({totalGameCount}0 games played)
       </h3>
+      
+      {false && (
       <button
         className='btn btn-active btn-secondary btn-large'
         onClick={
@@ -46,16 +51,45 @@ export const Home: React.FC<HomeProps> = ({
       >
         Play Chess
       </button>
+      )}
 
-      <div className="mt-6 border-l-4 border-blue-500 bg-white p-4 shadow rounded">
-  <h2 className="text-xl font-bold text-gray-700 mb-3">Move History</h2>
-  <ol className="list-decimal list-inside space-y-1 max-h-60 overflow-auto pr-2">
-    {chessMoves.map((move, index) => (
-      <li key={index} className="py-1 hover:text-blue-600 cursor-pointer transition">
-        {move}
-      </li>
-    ))}
-  </ol>
+
+      <button
+        onClick={() => setChessMoves([])}
+        className="btn btn-outline btn-error"
+      >
+        Reset Game
+      </button>
+
+
+      <div className="my-6">
+        <h2 className="text-xl font-bold mb-2">Hendrix's Chess Game</h2>
+        <ChessGame moves={chessMoves} onMoveUpdate={setChessMoves} />
+      </div>
+
+<div className="bg-white dark:bg-base-200 rounded-2xl shadow-lg p-4 w-full max-w-md mt-6">
+  <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Move History Companion</h2>
+
+  <div className="max-h-64 overflow-y-auto rounded-md border border-gray-200 dark:border-gray-700">
+    <table className="w-full text-sm text-left table-auto">
+      <thead className="sticky top-0 bg-gray-100 dark:bg-base-300 text-black dark:text-gray-200">
+        <tr>
+          <th className="py-2 px-3">Turn</th>
+          <th className="py-2 px-3">White</th>
+          <th className="py-2 px-3">Black</th>
+        </tr>
+      </thead>
+      <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+        {Array.from({ length: Math.ceil(chessMoves.length / 2) }).map((_, i) => (
+          <tr key={i} className="hover:bg-gray-50 dark:hover:bg-base-100 transition">
+            <td className="py-2 px-3 text-black dark:text-white">{i + 1}</td>
+            <td className="py-2 px-3 text-black dark:text-white">{chessMoves[i * 2] || ""}</td>
+            <td className="py-2 px-3 text-black dark:text-white">{chessMoves[i * 2 + 1] || ""}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
 </div>
 
 
@@ -64,6 +98,7 @@ export const Home: React.FC<HomeProps> = ({
 
 
 
+        {false && (
       <div className="card w-96 bg-base-100 card-md shadow-lg">
         <div className="card-body">
           <h2 className="card-title">General</h2>
@@ -104,6 +139,7 @@ export const Home: React.FC<HomeProps> = ({
 
         </div>
       </div>
+        )}
 
       <div className="card w-96 bg-base-100 card-md shadow-lg">
         <div className="card-body">
