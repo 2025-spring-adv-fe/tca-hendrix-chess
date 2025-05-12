@@ -12,7 +12,8 @@ interface HomeProps {
   generalFacts: GeneralFacts;
   gamesByMonthData: Array<[string, number]>
   chessMoves: string[];
-  setChessMoves: (moves: string[]) => void;
+  setChessMoves: (moves: string[], inCheck: boolean) => void;
+  isCheck: boolean;
 };
 
 
@@ -24,6 +25,7 @@ export const Home: React.FC<HomeProps> = ({
   , gamesByMonthData
   , chessMoves
   , setChessMoves
+  , isCheck
 }) => {
 
   useEffect(
@@ -54,18 +56,29 @@ export const Home: React.FC<HomeProps> = ({
       )}
 
 
-      <button
-        onClick={() => setChessMoves([])}
-        className="btn btn-outline btn-error"
-      >
-        Reset Game
-      </button>
+<button
+  onClick={() => setChessMoves([], false)}
+  className="btn btn-outline btn-error"
+>
+  Reset Game
+</button>
 
 
       <div className="my-6">
         <h2 className="text-xl font-bold mb-2">Hendrix's Chess Game</h2>
+            {isCheck && (
+      
+      <span className="text-red-500 text-sm font-semibold animate-pulse">
+        ♟ Check! The king is in check!
+      </span>
+    )}
         <ChessGame moves={chessMoves} onMoveUpdate={setChessMoves} />
       </div>
+
+      
+{/* ^ This code alerts the user if the king is in check! Animates as well! ^  */}
+
+{/* This code provides the stylying and logic to display the alternating moves in a table. */}
 
 <div className="bg-white dark:bg-base-200 rounded-2xl shadow-lg p-4 w-full max-w-md mt-6">
   <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Move History Companion</h2>
@@ -93,6 +106,11 @@ export const Home: React.FC<HomeProps> = ({
 </div>
 
 
+
+
+
+
+{/* ^ This code provides the stylying and logic to display the alternating moves in a table. ^ */}
 
 
 

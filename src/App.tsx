@@ -46,6 +46,13 @@ const App = () => {
 
   const [chessMoves, setChessMoves] = useState<string[]>([]);
 
+  const [isCheck, setIsCheck] = useState(false);
+
+
+  const handleMoveUpdate = (moves: string[], inCheck: boolean) => {
+  setChessMoves(moves);
+  setIsCheck(inCheck);
+};
 
 
   useEffect(
@@ -276,7 +283,8 @@ const App = () => {
                   }
                   //chessMoves Route
                   chessMoves={chessMoves}
-                  setChessMoves={setChessMoves}
+                  setChessMoves={handleMoveUpdate}
+                  isCheck={isCheck}
 
                 />
               }
@@ -310,7 +318,7 @@ const App = () => {
               element={
                 <ChessGame
                   moves={chessMoves}
-                  onMoveUpdate={setChessMoves}
+                  onMoveUpdate={handleMoveUpdate}
                 />
               }
             />
