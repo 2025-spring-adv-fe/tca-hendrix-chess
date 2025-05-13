@@ -18,8 +18,8 @@ interface HomeProps {
 
 
 export const Home: React.FC<HomeProps> = ({
-  totalGameCount
-  , setTitle
+  //totalGameCount
+    setTitle
   , leaderboardData
   , generalFacts
   , gamesByMonthData
