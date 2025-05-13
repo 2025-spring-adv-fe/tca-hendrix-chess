@@ -137,36 +137,42 @@ export const Home: React.FC<HomeProps> = ({
 
       {/* This code provides the stylying and logic to display the alternating moves in a table. */}
 
-    {gameStarted&& (
-      <div className="bg-white dark:bg-base-200 rounded-2xl shadow-lg p-4 w-full max-w-md mt-6">
-        <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-3">Move History Companion</h2>
-        <div className="flex gap-6 text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
-          <span>♙ White Time: {whiteTime}s</span>
-          <span>♟ Black Time: {blackTime}s</span>
-        </div>
+{gameStarted && (
+<div className="rounded-2xl shadow-lg p-4 w-full max-w-md mt-6 bg-gray-100 text-gray-900 dark:bg-base-200 dark:text-white border border-gray-300 dark:border-gray-700">
+    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+      Move History Companion
+    </h2>
 
-        <div className="max-h-64 overflow-y-auto rounded-md border border-gray-200 dark:border-gray-700">
-          <table className="w-full text-sm text-left table-auto">
-            <thead className="sticky top-0 bg-gray-100 dark:bg-base-300 text-black dark:text-gray-200">
-              <tr>
-                <th className="py-2 px-3">Turn</th>
-                <th className="py-2 px-3">White</th>
-                <th className="py-2 px-3">Black</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {Array.from({ length: Math.ceil(chessMoves.length / 2) }).map((_, i) => (
-                <tr key={i} className="hover:bg-gray-50 dark:hover:bg-base-100 transition">
-                  <td className="py-2 px-3 text-black dark:text-white">{i + 1}</td>
-                  <td className="py-2 px-3 text-black dark:text-white">{chessMoves[i * 2] || ""}</td>
-                  <td className="py-2 px-3 text-black dark:text-white">{chessMoves[i * 2 + 1] || ""}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    )}
+    <div className="flex gap-6 text-sm font-semibold mb-2 text-gray-800 dark:text-white">
+      <span>♙ White Time: {whiteTime}s</span>
+      <span>♟ Black Time: {blackTime}s</span>
+    </div>
+
+    <div className="max-h-64 overflow-y-auto rounded-md border border-gray-300 dark:border-gray-700">
+      <table className="w-full text-sm text-left table-auto">
+        <thead className="sticky top-0 bg-gray-200 dark:bg-base-300 text-black dark:text-white font-semibold">
+          <tr>
+            <th className="py-2 px-3">Turn</th>
+            <th className="py-2 px-3">White</th>
+            <th className="py-2 px-3">Black</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-gray-300 dark:divide-gray-600 text-black dark:text-white">
+          {Array.from({ length: Math.ceil(chessMoves.length / 2) }).map((_, i) => (
+            <tr key={i} className="hover:bg-gray-100 dark:hover:bg-base-100 transition">
+              <td className="py-2 px-3">{i + 1}</td>
+              <td className="py-2 px-3">{chessMoves[i * 2] || ""}</td>
+              <td className="py-2 px-3">{chessMoves[i * 2 + 1] || ""}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
+
+
+
 
 
       {/* ^ This code provides the stylying and logic to display the alternating moves in a table. ^ */}
