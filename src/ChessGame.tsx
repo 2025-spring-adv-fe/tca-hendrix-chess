@@ -5,9 +5,10 @@ import { Chessboard } from "react-chessboard";
 interface ChessGameProps {
   moves: string[];
   onMoveUpdate: (moves: string[], inCheck: boolean) => void;
+  onTurnChange?: (isWhiteTurn: boolean) => void;
 }
 
-const ChessGame: React.FC<ChessGameProps> = ({ moves, onMoveUpdate }) => {
+const ChessGame: React.FC<ChessGameProps> = ({ moves, onMoveUpdate, onTurnChange }) => {
   const gameRef = useRef(new Chess());
   const [fen, setFen] = useState("start");
 
@@ -25,16 +26,19 @@ const ChessGame: React.FC<ChessGameProps> = ({ moves, onMoveUpdate }) => {
 // This code allows the chess game to operate and "mutate" from the chess.js library without breaking. 
 // This code was modified a few times because of crashing that was occuring upon moving the opposite side pieces.
 
-  const safeGameMutate = (modify: (g: Chess) => void) => {
-    const game = gameRef.current;
-    modify(game);
-    setFen(game.fen());
+ const safeGameMutate = (modify: (g: Chess) => void) => {
+  const game = gameRef.current;
+  modify(game);
+  setFen(game.fen());
 
-    const isInCheck = game.inCheck();
-    onMoveUpdate(game.history(), isInCheck);
+  const isInCheck = game.inCheck();
+  onMoveUpdate(game.history(), isInCheck);
+
+  const isWhiteTurnNow = game.turn() === "w";
+  onTurnChange?.(isWhiteTurnNow);
+};
   // This is the move history updating in real time! (Line 34)
  // This code also pushes a message to the player if the king is in check. (Line 34)
-  };
 
   ///////////
 
