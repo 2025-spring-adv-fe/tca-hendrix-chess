@@ -43,7 +43,7 @@ export default defineConfig({
     })
   ], 
   build: {
-    outDir: "docs"
+    outDir: "dist"
   },
   base: "/tca-hendrix-chess/"
   
